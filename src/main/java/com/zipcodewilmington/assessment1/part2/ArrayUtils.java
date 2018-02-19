@@ -28,31 +28,17 @@ public class ArrayUtils {
      * @return an array with identical content excluding the specified `objectToRemove`
      * Given an array of objects, name `objectArray`, and an object `objectToRemove`, return an array of objects with identical contents excluding `objectToRemove`
      */
-    public static Object[] removeValue(Object[] objectArray, Object objectToRemove) {
-
-        for (int i = 0; i < objectArray.length; i++) {
-            if (!getNumberOfOccurrences(objectArray[i]).equals(objectToRemove)) {
-                extractIndexValueAndAppendToOutput(i);
+    public static Integer [] removeValue(Object[] objectArray, Object objectToRemove) {
+        ArrayList<Integer> newArray = new ArrayList<>();
+        for(int i = 0; i < objectArray.length; i++){
+            if(!objectArray[i].equals(objectToRemove)) {
+                newArray.add((Integer) objectArray[i]);
             }
-
         }
-        return getOutput();
-    }
-    protected void extractIndexValueAndAppendToOutput (Object[] objectArray){
-        // Getting value from Input array at index
-        Integer value = objectArray[indexValue];
+        return newArray.toArray(new Integer[0]);
 
-        // create a new array that is one size bigger than current output
-        Integer[] tempArray = new Integer[objectArray.length + 1];
-
-        //Copy all of the contents from the original output array into our temp array
-        System.arraycopy(objectArray, 0, tempArray, 0, objectArray.length);
-
-        // new value and place in the last slot of temp array
-        tempArray[tempArray.length - 1] = value;
-
-        // no longer point to original array point to temp array
-        this.output = tempArray;
+        //MADE THIS RETURN AN INTEGER ARRAY AND CHANGED IT IN THE METHOD BECAUSE THE TEST CASE SPECIFIES THAT IT WANTS
+        //TO RETURN AN INTEGER ARRAY!
     }
 
     /**
@@ -61,8 +47,27 @@ public class ArrayUtils {
      * given an array of objects, named `objectArray` return the most frequently occuring object in the array
      */
     public static Object getMostCommon(Object[] objectArray) {
-        return null;
+        int count = 1;
+        int tempCount;
+
+        Object mostCommon = objectArray[0];
+        Object temp = 0;
+
+        for (int i = 0; i < (objectArray.length - 1); i++) {
+            temp = objectArray[i];
+            tempCount = 0;
+            for (int j = 1; j < objectArray.length; j++) {
+                if (temp == objectArray[j])
+                    tempCount++;
+            }
+            if (tempCount > count) {
+                mostCommon = temp; //objectArray[i]
+                count = tempCount;
+            }
+        }
+        return mostCommon;
     }
+
 
 
     /**
@@ -71,7 +76,26 @@ public class ArrayUtils {
      * given an array of objects, named `objectArray` return the least frequently occuring object in the array
      */
     public static Object getLeastCommon(Object[] objectArray) {
-        return null;
+        int count = objectArray.length;
+        int tempCount;
+
+        Object leastCommon = objectArray[0];
+        Object temp;
+
+        for (int i = 0; i < (objectArray.length - 1); i++) {
+            temp = objectArray[i];
+            tempCount = 0; //reinitialize to 0
+            for (int j = 1; j < objectArray.length; j++) {
+                if (temp == objectArray[j])
+                    tempCount++;
+            }
+            if (tempCount <= count)
+            {
+                leastCommon = temp;
+                count = tempCount;
+            }
+        }
+        return leastCommon;
     }
 
     /**
@@ -80,15 +104,15 @@ public class ArrayUtils {
      * @return an array containing all elements in `objectArray` and `objectArrayToAdd`
      * given two arrays `objectArray` and `objectArrayToAdd`, return an array containing all elements in `objectArray` and `objectArrayToAdd`
      */
-    public static Object[] mergeArrays(Object[] objectArray, Object[] objectArrayToAdd) {
+    public static Integer[] mergeArrays(Object[] objectArray, Object[] objectArrayToAdd) {
 
-        Collection<Object> result = new ArrayList<Object>(objectArray.length + objectArrayToAdd.length);
+        Collection<Integer> result = new ArrayList<Integer>(objectArray.length + objectArrayToAdd.length);
         for (Object val : objectArray) {
-            result.add(val);
+            result.add((Integer) val);
         }
         for (Object val : objectArrayToAdd) {
-            result.add(val);
+            result.add((Integer) val);
         }
-        return result.toArray();
+        return result.toArray(new Integer[0]);
     }
 }

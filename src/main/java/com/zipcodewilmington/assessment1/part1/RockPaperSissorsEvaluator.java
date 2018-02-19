@@ -6,7 +6,7 @@ package com.zipcodewilmington.assessment1.part1;
 public class RockPaperSissorsEvaluator {
     protected static final String ROCK = "rock";
     protected static final String PAPER = "paper";
-    protected static final String SCISSOR = "scissor";
+    protected static final String SCISSOR = "scissors";
 
     /**
      * @param handSign a string representative of a hand sign
@@ -19,9 +19,9 @@ public class RockPaperSissorsEvaluator {
                 returnValue = "paper";
                 break;
             case "paper":
-                returnValue = "scissor";
+                returnValue = "scissors";
                 break;
-            case "scissor":
+            case "scissors":
                 returnValue = "rock";
                 break;
             default:
@@ -38,12 +38,12 @@ public class RockPaperSissorsEvaluator {
         String returnValue;
         switch (handSign) {
             case "rock":
-                returnValue = "scissor";
+                returnValue = "scissors";
                 break;
             case "paper":
                 returnValue = "rock";
                 break;
-            case "scissor":
+            case "scissors":
                 returnValue = "paper";
                 break;
             default:
@@ -60,16 +60,17 @@ public class RockPaperSissorsEvaluator {
     public String getWinner(String handSignOfPlayer1, String handSignOfPlayer2) {
         String returnVal;
         if (handSignOfPlayer1.equalsIgnoreCase("Rock") &&
-                handSignOfPlayer2.equalsIgnoreCase("Scissor")) {
+                handSignOfPlayer2.equalsIgnoreCase("Scissors")) {
             returnVal = "rock";
         } else if (handSignOfPlayer1.equalsIgnoreCase("Rock") &&
                 handSignOfPlayer2.equalsIgnoreCase("Paper")) {
             returnVal = "paper";
         } else if (handSignOfPlayer1.equalsIgnoreCase("Paper") &&
-                handSignOfPlayer2.equalsIgnoreCase("Scissor")) {
-            returnVal = "scissor";
-        } else
-        returnVal = "none";
+                handSignOfPlayer2.equalsIgnoreCase("Scissors")) {
+            returnVal = "scissors";
+        } else {
+            returnVal = "none";
+        }
 
         return returnVal;
     }
