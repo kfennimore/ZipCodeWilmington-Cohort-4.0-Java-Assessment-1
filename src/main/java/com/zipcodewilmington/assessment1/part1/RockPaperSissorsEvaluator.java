@@ -13,7 +13,21 @@ public class RockPaperSissorsEvaluator {
      * @return the respective winning move
      */
     public String getWinningMove(String handSign) {
-        return null;
+        String returnValue;
+        switch (handSign) {
+            case "rock":
+                returnValue = "paper";
+                break;
+            case "paper":
+                returnValue = "scissor";
+                break;
+            case "scissor":
+                returnValue = "rock";
+                break;
+            default:
+                returnValue = "N/A";
+        }
+        return returnValue;
     }
 
     /**
@@ -21,7 +35,21 @@ public class RockPaperSissorsEvaluator {
      * @return the respective losing move
      */
     public String getLosingMove(String handSign) {
-        return null;
+        String returnValue;
+        switch (handSign) {
+            case "rock":
+                returnValue = "scissor";
+                break;
+            case "paper":
+                returnValue = "rock";
+                break;
+            case "scissor":
+                returnValue = "paper";
+                break;
+            default:
+                returnValue = "N/A";
+        }
+        return returnValue;
     }
 
     /**
@@ -30,6 +58,19 @@ public class RockPaperSissorsEvaluator {
      * @return a string representative of the winning hand sign between the two players
      */
     public String getWinner(String handSignOfPlayer1, String handSignOfPlayer2) {
-        return null;
+        String returnVal;
+        if (handSignOfPlayer1.equalsIgnoreCase("Rock") &&
+                handSignOfPlayer2.equalsIgnoreCase("Scissor")) {
+            returnVal = "rock";
+        } else if (handSignOfPlayer1.equalsIgnoreCase("Rock") &&
+                handSignOfPlayer2.equalsIgnoreCase("Paper")) {
+            returnVal = "paper";
+        } else if (handSignOfPlayer1.equalsIgnoreCase("Paper") &&
+                handSignOfPlayer2.equalsIgnoreCase("Scissor")) {
+            returnVal = "scissor";
+        } else
+        returnVal = "none";
+
+        return returnVal;
     }
 }

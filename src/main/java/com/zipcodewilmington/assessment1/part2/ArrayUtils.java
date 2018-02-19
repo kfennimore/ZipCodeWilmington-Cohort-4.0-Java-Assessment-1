@@ -1,5 +1,8 @@
 package com.zipcodewilmington.assessment1.part2;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * Created by leon on 2/16/18.
  */
@@ -11,7 +14,12 @@ public class ArrayUtils {
      * Given an array of objects, named `objectArray`, and an object `objectToCount`, return the number of times the `objectToCount` appears in the `objectArray`
      */
     public static Integer getNumberOfOccurrences(Object[] objectArray, Object objectToCount) {
-        return null;
+
+        Integer count = 0;
+        for (Object value : objectArray) {
+            if (value.equals(objectToCount)) count++;
+        }
+        return count;
     }
 
     /**
@@ -21,7 +29,30 @@ public class ArrayUtils {
      * Given an array of objects, name `objectArray`, and an object `objectToRemove`, return an array of objects with identical contents excluding `objectToRemove`
      */
     public static Object[] removeValue(Object[] objectArray, Object objectToRemove) {
-        return null;
+
+        for (int i = 0; i < objectArray.length; i++) {
+            if (!getNumberOfOccurrences(objectArray[i]).equals(objectToRemove)) {
+                extractIndexValueAndAppendToOutput(i);
+            }
+
+        }
+        return getOutput();
+    }
+    protected void extractIndexValueAndAppendToOutput (Object[] objectArray){
+        // Getting value from Input array at index
+        Integer value = objectArray[indexValue];
+
+        // create a new array that is one size bigger than current output
+        Integer[] tempArray = new Integer[objectArray.length + 1];
+
+        //Copy all of the contents from the original output array into our temp array
+        System.arraycopy(objectArray, 0, tempArray, 0, objectArray.length);
+
+        // new value and place in the last slot of temp array
+        tempArray[tempArray.length - 1] = value;
+
+        // no longer point to original array point to temp array
+        this.output = tempArray;
     }
 
     /**
@@ -50,6 +81,14 @@ public class ArrayUtils {
      * given two arrays `objectArray` and `objectArrayToAdd`, return an array containing all elements in `objectArray` and `objectArrayToAdd`
      */
     public static Object[] mergeArrays(Object[] objectArray, Object[] objectArrayToAdd) {
-        return null;
+
+        Collection<Object> result = new ArrayList<Object>(objectArray.length + objectArrayToAdd.length);
+        for (Object val : objectArray) {
+            result.add(val);
+        }
+        for (Object val : objectArrayToAdd) {
+            result.add(val);
+        }
+        return result.toArray();
     }
 }
